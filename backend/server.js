@@ -29,13 +29,15 @@ app.use((req, res, next) => {
   next();
 });
 
-// Create necessary directories
-const directories = ['uploads', 'logs'];
-directories.forEach(dir => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-});
+// Create necessary directories (skip in serverless environment)
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  const directories = ['uploads', 'logs'];
+  directories.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  });
+}
 
 // API Routes
 app.use('/api', apiRoutes);
@@ -85,26 +87,28 @@ app.use((req, res) => {
   });
 });
 
-// Start server
+// Start server (only in non-serverless environment)
 const PORT = config.port;
 
-app.listen(PORT, () => {
-  logger.info(`🚀 Multi-Modal Prompt Refinement System started`);
-  logger.info(`📡 Server running on port ${PORT}`);
-  logger.info(`🌍 Environment: ${config.nodeEnv}`);
-  logger.info(`🔗 Frontend URL: ${config.frontendUrl}`);
-  logger.info(`\n🏗️  Architecture Layers:`);
-  logger.info(`   ├─ Perception Layer (Image/Document/Text)`);
-  logger.info(`   ├─ Normalization Layer`);
-  logger.info(`   ├─ Refinement Layer (Multi-Stage LLM)`);
-  logger.info(`   └─ Validation Layer`);
-  logger.info(`\n📊 Observable Endpoints:`);
-  logger.info(`   ├─ GET /api/health`);
-  logger.info(`   ├─ GET /api/layers/perception`);
-  logger.info(`   ├─ GET /api/layers/normalization`);
-  logger.info(`   └─ GET /api/layers/refinement`);
-  logger.info(`\n🎯 Main Endpoint:`);
-  logger.info(`   └─ POST /api/refine\n`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    logger.info(`🚀 Multi-Modal Prompt Refinement System started`);
+    logger.info(`📡 Server running on port ${PORT}`);
+    logger.info(`🌍 Environment: ${config.nodeEnv}`);
+    logger.info(`🔗 Frontend URL: ${config.frontendUrl}`);
+    logger.info(`\n🏗️  Architecture Layers:`);
+    logger.info(`   ├─ Perception Layer (Image/Document/Text)`);
+    logger.info(`   ├─ Normalization Layer`);
+    logger.info(`   ├─ Refinement Layer (Multi-Stage LLM)`);
+    logger.info(`   └─ Validation Layer`);
+    logger.info(`\n📊 Observable Endpoints:`);
+    logger.info(`   ├─ GET /api/health`);
+    logger.info(`   ├─ GET /api/layers/perception`);
+    logger.info(`   ├─ GET /api/layers/normalization`);
+    logger.info(`   └─ GET /api/layers/refinement`);
+    logger.info(`\n🎯 Main Endpoint:`);
+    logger.info(`   └─ POST /api/refine\n`);
+  });
+}
 
 export default app;
