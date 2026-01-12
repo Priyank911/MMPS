@@ -4,10 +4,9 @@ A production-grade multi-modal prompt refinement system that processes heterogen
 
 ## System Demonstration
 
-<video width="100%" controls>
-  <source src="https://res.cloudinary.com/dq1ywsnr4/video/upload/v1768218553/cqmaakilcizhyktf6zi7.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Multi-Modal Prompt System Demo](https://res.cloudinary.com/dq1ywsnr4/video/upload/v1768218553/cqmaakilcizhyktf6zi7.jpg)](https://res.cloudinary.com/dq1ywsnr4/video/upload/v1768218553/cqmaakilcizhyktf6zi7.mp4)
+
+*Click the image above to watch the system demonstration video*
 
 ## API Architecture Validation
 
