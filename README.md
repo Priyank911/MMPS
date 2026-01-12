@@ -5,7 +5,7 @@ A production-grade multi-modal prompt refinement system that processes heterogen
 ## System Demonstration
 
 <video width="100%" controls>
-  <source src="shared/video/MMPS demo.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dq1ywsnr4/video/upload/v1768218553/cqmaakilcizhyktf6zi7.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
