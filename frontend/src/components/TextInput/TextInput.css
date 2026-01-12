@@ -1,0 +1,55 @@
+.text-input-container {
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.text-input-container h3 {
+  display: none;
+}
+
+.input-description {
+  display: none;
+}
+
+.text-input-area {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: none;
+  min-height: 50px;
+  max-height: none;
+  overflow: hidden;
+  overflow-y: hidden;
+  transition: border-color 0.2s ease, padding 0.2s ease;
+  background: white;
+  line-height: 1.5;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.text-input-area::-webkit-scrollbar {
+  display: none;
+}
+
+.text-input-area:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.25);
+  background: white;
+  box-shadow: none;
+}
+
+.text-input-area::placeholder {
+  color: #aaa;
+}
+
+.character-count {
+  text-align: right;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #aaa;
+  font-weight: 400;
+}
