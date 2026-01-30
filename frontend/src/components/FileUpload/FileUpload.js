@@ -79,34 +79,8 @@ const FileUpload = ({ onImagesChange, onDocumentsChange, images: propImages = []
     setShowUploadMenu(false);
   };
 
-  const removeImage = (index, e) => {
-    e?.stopPropagation();
-    const updatedImages = images.filter((_, i) => i !== index);
-    setImages(updatedImages);
-    onImagesChange(updatedImages);
-  };
-
-  const removeDocument = (index, e) => {
-    e?.stopPropagation();
-    const updatedDocuments = documents.filter((_, i) => i !== index);
-    setDocuments(updatedDocuments);
-    onDocumentsChange(updatedDocuments);
-  };
-
-  const viewImage = (img, e) => {
-    e?.stopPropagation();
-    setViewingImage(img);
-  };
-
-  const viewDocument = (doc, e) => {
-    e?.stopPropagation();
-    setViewingDocument(doc);
-  };
-
   const {
-    getRootProps: getImageRootProps,
-    getInputProps: getImageInputProps,
-    isDragActive: isImageDragActive
+    getInputProps: getImageInputProps
   } = useDropzone({
     onDrop: onDropImages,
     accept: {
@@ -120,9 +94,7 @@ const FileUpload = ({ onImagesChange, onDocumentsChange, images: propImages = []
   });
 
   const {
-    getRootProps: getDocRootProps,
-    getInputProps: getDocInputProps,
-    isDragActive: isDocDragActive
+    getInputProps: getDocInputProps
   } = useDropzone({
     onDrop: onDropDocuments,
     accept: {
