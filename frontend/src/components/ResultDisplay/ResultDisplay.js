@@ -3,6 +3,26 @@ import './ResultDisplay.css';
 
 const ResultDisplay = ({ result }) => {
   const [promptFormat, setPromptFormat] = useState('txt');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyToClipboard = () => {
+    let contentToCopy;
+    
+    if (promptFormat === 'txt') {
+      // Copy plain text format
+      contentToCopy = refinedPrompt;
+    } else {
+      // Copy JSON format
+      contentToCopy = JSON.stringify({ refinedPrompt, details, confidence }, null, 2);
+    }
+    
+    navigator.clipboard.writeText(contentToCopy).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
+  };
   
   if (!result) return null;
 
@@ -61,18 +81,27 @@ const ResultDisplay = ({ result }) => {
       <div className="refined-prompt-section">
         <div className="prompt-header">
           <h2>Refined Prompt</h2>
-          <div className="format-toggle">
-            <button
-              className={`toggle-btn ${promptFormat === 'txt' ? 'active' : ''}`}
-              onClick={() => setPromptFormat('txt')}
+          <div className="header-actions">
+            <div className="format-toggle">
+              <button
+                className={`toggle-btn ${promptFormat === 'txt' ? 'active' : ''}`}
+                onClick={() => setPromptFormat('txt')}
+              >
+                TXT
+              </button>
+              <button
+                className={`toggle-btn ${promptFormat === 'json' ? 'active' : ''}`}
+                onClick={() => setPromptFormat('json')}
+              >
+                JSON
+              </button>
+            </div>
+            <button 
+              className={`copy-btn ${copied ? 'copied' : ''}`}
+              onClick={handleCopyToClipboard}
+              title={`Copy ${promptFormat.toUpperCase()} format to clipboard`}
             >
-              TXT
-            </button>
-            <button
-              className={`toggle-btn ${promptFormat === 'json' ? 'active' : ''}`}
-              onClick={() => setPromptFormat('json')}
-            >
-              JSON
+              {copied ? '✓ Copied' : 'Copy'}
             </button>
           </div>
         </div>

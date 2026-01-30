@@ -111,6 +111,12 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .refined-prompt-section h2 {
   font-size: 12px;
   font-weight: 600;
@@ -148,6 +154,39 @@
 .toggle-btn:hover {
   background: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.8);
+}
+
+.toggle-btn.active {
+  background: #000;
+  color: #fff;
+}
+
+/* Copy Button */
+.copy-btn {
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: #fff;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.copy-btn.copied {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
 }
 
 .toggle-btn.active {
