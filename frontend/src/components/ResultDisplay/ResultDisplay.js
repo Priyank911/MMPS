@@ -4,6 +4,10 @@ import './ResultDisplay.css';
 const ResultDisplay = ({ result }) => {
   const [promptFormat, setPromptFormat] = useState('txt');
   const [copied, setCopied] = useState(false);
+  
+  if (!result) return null;
+
+  const { success, rejected, rejectionReason, refinedPrompt, details, confidence, metadata } = result;
 
   const handleCopyToClipboard = () => {
     let contentToCopy;
@@ -23,10 +27,6 @@ const ResultDisplay = ({ result }) => {
       console.error('Failed to copy:', err);
     });
   };
-  
-  if (!result) return null;
-
-  const { success, rejected, rejectionReason, refinedPrompt, details, confidence, metadata } = result;
 
   if (rejected) {
     return (
